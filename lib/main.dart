@@ -7,6 +7,7 @@ import 'package:what_to_do/pages/homePage.dart';
 import 'package:what_to_do/pages/shopping.dart';
 import 'package:what_to_do/pages/trash.dart';
 import 'package:what_to_do/pages/work.dart';
+import 'package:what_to_do/pages/work_new.dart';
 import 'package:what_to_do/utility/themes.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         routes: {
         '/homePage':(context)=> HomePage(),
         '/allTask':(context)=> AllTask(),
-        '/work':(context)=> WorkFolder(),
+        '/work':(context)=> WorkFolderNew(),
+//        '/work':(context)=> WorkFolder(),
         '/home':(context)=> HomeFolder(),
         '/events':(context)=> EventsFolder(),
         '/shopping':(context)=> ShoppingFolder(),
