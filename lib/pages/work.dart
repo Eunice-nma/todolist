@@ -45,7 +45,7 @@ class _WorkFolderState extends State<WorkFolder> {
           ),
         ),
 
-        // myAppBar(context, 0xFF005ef5, 'Work', {'count': todos}),
+        // myAppBar(context, 0xFF005ef5, 'Work', {'count': todos}), // Some comment
 
         body: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 12.0),
@@ -54,7 +54,7 @@ class _WorkFolderState extends State<WorkFolder> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: todos.length== 0? Center(child: Text('add items')):ListView.builder(
+                  child: todos.length== 0? Center(child: Text('add items')):  ListView.builder(
                     //children: List.generate(todos.length, (index) => null),
                     itemCount: allTask? todos.length: completedTask? selectedTodo.length: unselectedTodos.length,
                     itemBuilder: (BuildContext context, int i){
