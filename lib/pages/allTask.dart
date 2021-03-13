@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:what_to_do/myAppBar.dart';
+import 'package:what_to_do/utility/colors.dart';
+import 'package:what_to_do/views/app_bar.dart';
 
 class AllTask extends StatefulWidget {
   @override
@@ -20,15 +22,10 @@ class _AllTaskState extends State<AllTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 100, // Set this
-        flexibleSpace: MyAppBar(
-          headerColor: Color(0xFF6c56da),
-          headerText: 'All Tasks',
-        ),
+      appBar: TLAppBar(
+        headerColor: TLColors.purple,
+        headerText: 'All Tasks',
       ),
-      //appBar: myAppBar(context, 0xFF6c56da, 'All Tasks'),
 
       body: Padding(
         padding: const EdgeInsets.all(10.0),

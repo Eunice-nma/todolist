@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 //import 'package:what_to_do/customCheckbox.dart';
 import 'package:what_to_do/myAppBar.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:what_to_do/utility/colors.dart';
+import 'package:what_to_do/views/app_bar.dart';
 
 
 List todos = List();//['List'];
@@ -39,13 +41,13 @@ class _WorkFolderState extends State<WorkFolder> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 100, // Set this
-          flexibleSpace: MyAppBar(
-            headerColor: Color(0xFF005ef5),
-            headerText: 'work',
+          flexibleSpace: TLAppBar(
+            headerColor: TLColors.blue,
+            headerText: 'Work',
           ),
         ),
 
-        // myAppBar(context, 0xFF005ef5, 'Work', {'count': todos}), // Some comment
+        // myAppBar(context, 0xFF005ef5, 'Work', {'count': todos}),
 
         body: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 12.0),

@@ -47,7 +47,8 @@ class AppTheme extends ChangeNotifier{
             color: Colors.black,
             fontSize: 27.0,
             fontWeight: FontWeight.w500
-        )
+        ),
+
     ),
     shadowColor: Colors.grey.withOpacity(0.8),
     inputDecorationTheme: InputDecorationTheme(
@@ -80,7 +81,8 @@ class AppTheme extends ChangeNotifier{
             color: Colors.white,
             fontSize: 27.0,
             fontWeight: FontWeight.w500
-        )
+        ),
+
     ),
     shadowColor: Colors.black12.withOpacity(0.8),
     inputDecorationTheme: InputDecorationTheme(
