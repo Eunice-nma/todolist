@@ -4,6 +4,7 @@ import 'package:what_to_do/myAppBar.dart';
 import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/views/app_bar.dart';
 import 'package:what_to_do/views/customCheckbox.dart';
+import 'package:what_to_do/views/todo_list_item.dart';
 
 class WorkFolderNew extends StatefulWidget {
   @override
@@ -114,34 +115,4 @@ class _WorkFolderNewState extends State<WorkFolderNew> {
   }
 }
 
-class TodoListItem extends StatelessWidget {
-  final bool isSelected;
-  final String itemTitle;
-  final Function onPressed;
 
-  const TodoListItem({Key key, this.isSelected, this.itemTitle, this.onPressed})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        child: Row(
-          children: [
-            CustomCheckBox(
-              selectedColor: TLColors.blue,
-              isSelected: isSelected,
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-                child: Text(
-                  itemTitle,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ))
-          ],
-        ),
-      ),
-    );
-  }
-}
