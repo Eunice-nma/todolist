@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:what_to_do/utility/colors.dart';
-
 import 'customCheckbox.dart';
 
 class TodoListItem extends StatelessWidget {
@@ -16,20 +15,23 @@ class TodoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      child: Container(
-        child: Row(
-          children: [
-            CustomCheckBox(
-              selectedColor: TLColors.blue,
-              isSelected: isSelected,
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-                child: Text(
-                  itemTitle,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ))
-          ],
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(2.0, 15.0, 2.0, 15.0),
+        child: Container(
+          child: Row(
+            children: [
+              CustomCheckBox(
+                selectedColor: TLColors.blue,
+                isSelected: isSelected,
+              ),
+              SizedBox(width: 20,),
+              Expanded(
+                  child: Text(
+                    itemTitle,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ))
+            ],
+          ),
         ),
       ),
     );

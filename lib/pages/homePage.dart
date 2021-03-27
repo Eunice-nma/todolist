@@ -3,7 +3,7 @@ import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/utility/strings.dart';
 import 'package:what_to_do/utility/themes.dart';
 import 'package:what_to_do/views/folder_items.dart';
-import 'work.dart';
+//import 'work.dart';
 import 'package:provider/provider.dart';
 
 bool isDarkModeOn = true;
@@ -18,16 +18,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    String workCount = todos.length.toString();
+    //String workCount = todos.length.toString();
 
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-//          title: Text(
-//            TLStrings.appName,
-//            style: Theme.of(context).textTheme.headline1,
-//          ),
+          title: Text(
+            TLStrings.appName,
+            style: Theme.of(context).textTheme.headline1,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 5.0),
@@ -39,67 +39,68 @@ class _HomePageState extends State<HomePage> {
                 style: Theme.of(context).textTheme.headline1,
               ),
               SizedBox(height: 3.0),
-//              Text(
-//                'Welcome to MYTODO\'S, here are your folders',
-//                style: TextStyle(
-//                    color: Colors.grey[500],
-//                    fontSize: 14.0,
-//                ),
-//              ),
+              Text(
+                'Welcome to MYTODOS, here are your folders',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 14.0,
+                ),
+              ),
 
               SizedBox(height: 20.0),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: FolderItems(
+              Flexible(
+                child: GridView.count(
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  crossAxisCount: 2,
+                  children: <Widget>[
+                    FolderItems(
                       location: '/allTask',
                       number: '0',
                       folderName: 'All Task',
                       icon: Icons.folder,
                       bgColor: TLColors.purple,
                     ),
-                  ),
-                  SizedBox(width: 15.0),
-                  Expanded(
-                    child: FolderItems(
+                    FolderItems(
                       location: '/work',
-                      number: workCount,
+                      number: '0',
                       folderName: 'Work',
                       icon: Icons.work,
                       bgColor: TLColors.blue,
                     ),
-                  ),
-                ],
+                    FolderItems(
+                      location: '/home',
+                      number: '0',
+                      folderName: 'Home',
+                      icon: Icons.home,
+                      bgColor: TLColors.yellow,
+                    ),
+                    FolderItems(
+                      location: '/event',
+                      number: '0',
+                      folderName: 'Event',
+                      icon: Icons.event,
+                      bgColor: TLColors.orange,
+                    ),
+                    FolderItems(
+                      location: '/shopping',
+                      number: '0',
+                      folderName: 'Shopping',
+                      icon: Icons.shopping_cart,
+                      bgColor: TLColors.pink,
+                    ),
+                    FolderItems(
+                      location: '/health',
+                      number: '0',
+                      folderName: 'Health',
+                      icon: Icons.healing,
+                      bgColor: TLColors.green,
+                    ),
+                  ],
+                ),
               ),
 
-              SizedBox(height: 15.0),
 
-//            Row(
-//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//              children: <Widget>[
-//                Expanded(child: folders(Color(0xFFf6bc38), 'Home', Icons.home, '/home', '0')),
-//                SizedBox(width: 15.0),
-//                Expanded(child: folders(Color(0xFFf78c3f), 'Events', Icons.event, '/events', '0')),
-//              ],
-//            ),
-//
-//            SizedBox(height: 15.0),
-//
-//
-//            Row(
-//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//              children: <Widget>[
-//                Expanded(child: folders(Color(0xFFf74f56), 'Shopping', Icons.shopping_cart, '/shopping', '0')),
-//                SizedBox(width: 15.0),
-//                Expanded(child: folders(Color(0xFF2ec98b), 'Health', Icons.healing, '/health', '0')),
-//              ],
-//            ),
-
-              SizedBox(height: 10.0),
-
-              Expanded(child: Container()),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,9 +142,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-
-              SizedBox(height: 20.0),
-
             ],
           ),
         ));

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:what_to_do/myAppBar.dart';
+//import 'package:what_to_do/myAppBar.dart';
 import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/views/app_bar.dart';
-import 'package:what_to_do/views/customCheckbox.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+//import 'package:what_to_do/views/customCheckbox.dart';
 import 'package:what_to_do/views/todo_list_item.dart';
 
 class WorkFolderNew extends StatefulWidget {
@@ -25,7 +26,8 @@ class _WorkFolderNewState extends State<WorkFolderNew> {
         headerText: 'Work',
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+            },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Icon(Icons.sort),
@@ -48,20 +50,50 @@ class _WorkFolderNewState extends State<WorkFolderNew> {
                 child: ListView.separated(
                     itemBuilder: (_context, _index) {
                       var item = todos[_index];
-                      return TodoListItem(
-                        isSelected: selectedItems.contains(item),
+                      return Container(
+                        child: Slidable(
+                          dismissal: SlidableDismissal(
+                            child: SlidableDrawerDismissal(),
+                            onDismissed: (actionType) {
+                              setState(() {
+                                todos.removeAt(_index);
+                              });
+                            },
+                          ),
+                          key: ValueKey(todos[_index]),
+                          actionPane: SlidableScrollActionPane(),
+                          actionExtentRatio: 0.25,
+                            child: TodoListItem(
+                            isSelected: selectedItems.contains(item),
                         itemTitle: item,
                         onPressed: () {
                           setState(() {
-                            if(selectedItems.contains(item))
+                            if (selectedItems.contains(item))
                               selectedItems.remove(item);
                             else
-                            selectedItems.add(item);
+                              selectedItems.add(item);
                           });
                         },
+                      ),
+                          actions: <Widget>[
+                            IconSlideAction(
+                              icon: Icons.close,
+                              caption: 'Delete',
+                              color: Theme.of(context).accentColor,
+                              onTap: () {
+                                setState(() {
+                                  todos.removeAt(_index);
+                                });
+                              },
+                            )
+                          ],
+                        ),
                       );
+
                     },
-                    separatorBuilder: (_context, _index) => SizedBox(height: 15,),
+                    separatorBuilder: (_context, _index) => SizedBox(
+                          height: 15,
+                        ),
                     itemCount: todos.length),
               ),
             ),
@@ -114,5 +146,3 @@ class _WorkFolderNewState extends State<WorkFolderNew> {
     FocusScope.of(context).unfocus();
   }
 }
-
-

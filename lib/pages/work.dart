@@ -5,8 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/views/app_bar.dart';
 
-
-List todos = List();//['List'];
+List todos = []; //['List'];
 
 class WorkFolder extends StatefulWidget {
   @override
@@ -14,12 +13,10 @@ class WorkFolder extends StatefulWidget {
 }
 
 class _WorkFolderState extends State<WorkFolder> {
-
-  List unselectedTodos= ['no'];
-  List selectedTodo= ['yes'];
+  List unselectedTodos = ['no'];
+  List selectedTodo = ['yes'];
   String input = '';
   bool _isSelected = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +25,8 @@ class _WorkFolderState extends State<WorkFolder> {
       fieldText.clear();
     }
 
-
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
 
         if (!currentFocus.hasPrimaryFocus) {
@@ -106,80 +102,86 @@ class _WorkFolderState extends State<WorkFolder> {
                                     /*CustomCheckbox(
                                         selectedColor: Color(0xFF005ef5),
                                     ),*/
-                                  ),
+                                      ),
 
-                                  SizedBox(
-                                    width: 5, // here put the desired space between the icon and the text
+                                      SizedBox(
+                                        width:
+                                            5, // here put the desired space between the icon and the text
+                                      ),
+                                      Flexible(
+                                          child: Text(
+                                        allTask
+                                            ? todos[i]
+                                            : completedTask
+                                                ? selectedTodo[i]
+                                                : unselectedTodos[i],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      )) // here we could use a column widget if we want to add a subtitle
+                                    ],
                                   ),
-                                  Flexible(
-                                      child: Text(
-                                        allTask? todos[i]: completedTask? selectedTodo[i]: unselectedTodos[i],
-                                        style: Theme.of(context).textTheme.bodyText1,
-                                      )
-                                  ) // here we could use a column widget if we want to add a subtitle
+                                ),
+                                actions: <Widget>[
+                                  IconSlideAction(
+                                    icon: Icons.close,
+                                    caption: 'Delete',
+                                    color: Theme.of(context).accentColor,
+                                    onTap: () {
+                                      setState(() {
+                                        todos.removeAt(i);
+                                      });
+                                    },
+                                  )
                                 ],
                               ),
-                            ),
-                            actions: <Widget>[
-                              IconSlideAction(
-                                icon: Icons.close,
-                                caption: 'Delete',
-                                color: Theme.of(context).accentColor,
-                                onTap: (){
-                                  setState(() {
-                                    todos.removeAt(i);
-                                  });
-                                },
-                              )
-                            ],
-                          ),
-                        );
-                    },
-                  ),
+                            );
+                          },
+                        ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 14.0, right: 14.0),
                   child: Container(
                     height: 50.0,
                     child: TextField(
-                        controller: fieldText,
-                        cursorColor: Colors.grey[700],
-                        onChanged: (String value){
+                      controller: fieldText,
+                      cursorColor: Colors.grey[700],
+                      onChanged: (String value) {
                         input = value;
                       },
-                        decoration: InputDecoration(
-                            isDense: true,
-                            focusedBorder:OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius: BorderRadius.all(Radius.circular(22.0)),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent),
-                                borderRadius: BorderRadius.all(Radius.circular(22.0))
-                            ),
-
-                            suffixIcon: IconButton(
-                                icon: Icon(Icons.add, size: 30.0, color: Colors.grey[700]),
-                                onPressed: (){
-                                  setState(() {
-                                    todos.add(input);
-                                    FocusScope.of(context).unfocus();
-                                    clearText();
-                                    input='';
-                                  });
-                                }
-                            ),
-                            filled: true,
-                            fillColor: Theme.of(context).inputDecorationTheme.fillColor,
+                      decoration: InputDecoration(
+                        isDense: true,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(Radius.circular(22.0)),
                         ),
-                      onSubmitted: (newValue){
-                          setState(() {
-                            todos.add(input);
-                            unselectedTodos.add(input);
-                            FocusScope.of(context).unfocus();
-                            clearText();
-                            input='';
-                          });
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(22.0))),
+                        suffixIcon: IconButton(
+                            icon: Icon(Icons.add,
+                                size: 30.0, color: Colors.grey[700]),
+                            onPressed: () {
+                              setState(() {
+                                todos.add(input);
+                                FocusScope.of(context).unfocus();
+                                clearText();
+                                input = '';
+                              });
+                            }),
+                        filled: true,
+                        fillColor:
+                            Theme.of(context).inputDecorationTheme.fillColor,
+                      ),
+                      onSubmitted: (newValue) {
+                        setState(() {
+                          todos.add(input);
+                          unselectedTodos.add(input);
+                          FocusScope.of(context).unfocus();
+                          clearText();
+                          input = '';
+                        });
                       },
                     ),
                   ),

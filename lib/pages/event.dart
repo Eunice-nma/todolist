@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class EventsFolder extends StatefulWidget {
+class EventFolder extends StatefulWidget {
   @override
-  _EventsFolderState createState() => _EventsFolderState();
+  _EventFolderState createState() => _EventFolderState();
 }
 
-class _EventsFolderState extends State<EventsFolder> {
+class _EventFolderState extends State<EventFolder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

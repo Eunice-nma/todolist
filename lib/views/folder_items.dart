@@ -8,12 +8,19 @@ class FolderItems extends StatelessWidget {
   final IconData icon;
   final String number;
 
-  const FolderItems({Key key, this.location, this.folderName, this.bgColor, this.icon, this.number}) : super(key: key);
+  const FolderItems(
+      {Key key,
+      this.location,
+      this.folderName,
+      this.bgColor,
+      this.icon,
+      this.number})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.pushNamed(context, location);
       },
       child: Container(
@@ -24,14 +31,12 @@ class FolderItems extends StatelessWidget {
             children: <Widget>[
               Align(
                 alignment: Alignment.topLeft,
-                child: Text(
-                    folderName,
+                child: Text(folderName,
                     style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.white,
+                      fontSize: 16.0,
+                      color: Colors.white,
 //                        fontWeight: FontWeight.bold
-                    )
-                ),
+                    )),
               ),
               Align(
                 alignment: Alignment.center,
@@ -48,14 +53,13 @@ class FolderItems extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
               )
             ],
           ),
         ),
-        height: 143.0,
+        //height: 140.0,
 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

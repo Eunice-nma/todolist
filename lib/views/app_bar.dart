@@ -27,7 +27,8 @@ class _TLAppBarState extends State<TLAppBar> {
           onPressed: () => Navigator.pop(context),
         ),// Set this height
         backgroundColor: widget.headerColor,
-        title: Text(widget.headerText, textAlign: TextAlign.center,),
+        title: Text(widget.headerText),
+        centerTitle: true,
         actions: widget.actions,
     );
   }
