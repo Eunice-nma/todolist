@@ -1,5 +1,5 @@
-//import 'package:flutter/material.dart';
-/*
+import 'package:flutter/material.dart';
+
 class SharedVariables extends StatefulWidget {
   @override
   _SharedVariablesState createState() => _SharedVariablesState();
@@ -16,13 +16,13 @@ class _SharedVariablesState extends State<SharedVariables> {
     return Container();
   }
 }
-*/
+
 
 bool allTask = true;
 bool completedTask = false;
 bool nonCompletedTask = false;
 
-/*
+
 AppBar myAppBar(context, headerColor, headerText, todoList){
   return AppBar(
       automaticallyImplyLeading: false,
@@ -114,4 +114,4 @@ AppBar myAppBar(context, headerColor, headerText, todoList){
       )
   );
 }
-*/
+
