@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:what_to_do/utility/colors.dart';
 import 'customCheckbox.dart';
 
 class TodoListItem extends StatelessWidget {
   final bool isSelected;
   final String itemTitle;
   final Function onPressed;
+  final Color selectedColor;
 
-  const TodoListItem({Key key, this.isSelected, this.itemTitle, this.onPressed})
+  const TodoListItem({Key key, this.isSelected, this.itemTitle, this.onPressed, this.selectedColor})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class TodoListItem extends StatelessWidget {
           child: Row(
             children: [
               CustomCheckBox(
-                selectedColor: TLColors.blue,
+                selectedColor: selectedColor,
                 isSelected: isSelected,
               ),
               SizedBox(width: 20,),

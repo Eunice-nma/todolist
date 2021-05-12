@@ -1,28 +1,8 @@
 import 'package:flutter/material.dart';
 
-/*
-ThemeData basicTheme(){
-  TextTheme _basicTextTheme(TextTheme base){
-    return base.copyWith(
-      headline5: base.headline5.copyWith  (
-          fontSize: 20.0,
-          color: Colors.grey[500],
-          fontWeight: FontWeight.w500
-      )
-    );
-  }
-
-  final ThemeData base= ThemeData.dark();
-  return base.copyWith(
-    textTheme: _basicTextTheme(base.textTheme),
-  );
-}
-*/
 class AppTheme extends ChangeNotifier{
-
   ThemeData _selectedTheme;
 
-  //static final ThemeData lightTheme = ThemeData(
   ThemeData light= ThemeData.light().copyWith(
     accentColor: Colors.grey[200],
     appBarTheme: AppBarTheme(
@@ -38,6 +18,7 @@ class AppTheme extends ChangeNotifier{
             fontSize: 18.0,
             fontWeight: FontWeight.w400
         ),
+
         bodyText2: TextStyle(
             color: Colors.black,
             fontSize: 12.0,
@@ -48,15 +29,15 @@ class AppTheme extends ChangeNotifier{
             fontSize: 27.0,
             fontWeight: FontWeight.w500
         ),
-
     ),
     shadowColor: Colors.grey.withOpacity(0.8),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Colors.grey[400],
-    )
+    ),
+
+
   );
 
-  //static final ThemeData darkTheme = ThemeData(
   ThemeData dark= ThemeData.dark().copyWith(
       accentColor: Colors.grey[800],
       appBarTheme: AppBarTheme(

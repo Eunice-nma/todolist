@@ -3,14 +3,11 @@ import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/utility/strings.dart';
 import 'package:what_to_do/utility/themes.dart';
 import 'package:what_to_do/views/folder_items.dart';
-//import 'work.dart';
 import 'package:provider/provider.dart';
 
 bool isDarkModeOn = true;
 
 class HomePage extends StatefulWidget {
-  //final List count;
-  //const HomePage({Key key, this.count}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -18,7 +15,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    //String workCount = todos.length.toString();
+    String greeting() {
+    var hour = DateTime.now().hour;
+      if (hour < 12) {
+        return 'Good Morning,';
+      }
+      if (hour < 17) {
+        return 'Good Afternoon,';
+      }
+        return 'Good Evening,';
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -30,12 +36,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 5.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 5.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Good Morning,',
+                greeting(),
                 style: Theme.of(context).textTheme.headline1,
               ),
               SizedBox(height: 3.0),
@@ -50,12 +56,13 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20.0),
               Flexible(
                 child: GridView.count(
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
                   crossAxisCount: 2,
                   children: <Widget>[
                     FolderItems(
                       location: '/allTask',
+                      //TODO: show the number of item in the array
                       number: '0',
                       folderName: 'All Task',
                       icon: Icons.folder,
@@ -100,8 +107,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -142,6 +147,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              SizedBox(height: 25)
             ],
           ),
         ));

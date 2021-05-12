@@ -29,7 +29,6 @@ class _TLAppBarState extends State<TLAppBar> {
         backgroundColor: widget.headerColor,
         title: Text(widget.headerText),
         centerTitle: true,
-        actions: widget.actions,
     );
   }
 }

@@ -1,196 +1,113 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:what_to_do/customCheckbox.dart';
-import 'package:what_to_do/myAppBar.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/views/app_bar.dart';
+import 'package:what_to_do/views/inputField.dart';
+import 'package:what_to_do/views/slider.dart';
+import 'package:what_to_do/views/todo_list_item.dart';
 
-List todos = []; //['List'];
-
-class WorkFolder extends StatefulWidget {
+class WorkFolderNew extends StatefulWidget {
   @override
-  _WorkFolderState createState() => _WorkFolderState();
+  _WorkFolderNewState createState() => _WorkFolderNewState();
 }
 
-class _WorkFolderState extends State<WorkFolder> {
-  List unselectedTodos = ['no'];
-  List selectedTodo = ['yes'];
-  String input = '';
-  bool _isSelected = false;
+
+class _WorkFolderNewState extends State<WorkFolderNew> {
+  final todoEntryController = TextEditingController(text: '');
+  final workArray = [];
+  final selectedItems = [];
 
   @override
   Widget build(BuildContext context) {
-    final fieldText = TextEditingController();
-    void clearText() {
-      fieldText.clear();
-    }
 
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
+    return Scaffold(
 
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: 100, // Set this
-          flexibleSpace: TLAppBar(
-            headerColor: TLColors.blue,
-            headerText: 'Work',
-          ),
-        ),
-
-        // myAppBar(context, 0xFF005ef5, 'Work', {'count': todos}),
-
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 12.0),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: todos.length== 0? Center(child: Text('add items')):  ListView.builder(
-                    //children: List.generate(todos.length, (index) => null),
-                    itemCount: allTask? todos.length: completedTask? selectedTodo.length: unselectedTodos.length,
-                    itemBuilder: (BuildContext context, int i){
-                        return Container(
-                          child: Slidable(
-                            dismissal: SlidableDismissal(
-                              child: SlidableDrawerDismissal(),
-                              onDismissed: (actionType) {
-                                setState(() {
-                                  todos.removeAt(i);
-                                });
-                              },
-                            ),
-                            key: ValueKey(todos[i]),
-                            actionPane: SlidableScrollActionPane(),
-                            actionExtentRatio: 0.25,
-                            child: ListTile(
-                              title: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-
-                                  Container(
-                                    child: GestureDetector(
-                                        onTap: (){
-                                          setState(() {
-                                            _isSelected = !_isSelected;
-                                          });
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: _isSelected? Color(0xFF005ef5) ?? Colors.blue : Colors.transparent,
-                                              borderRadius: BorderRadius.circular(10.0),
-                                              border: _isSelected? null: Border.all(
-                                                  color: Colors.grey,
-                                                  width: 1.5
-                                              )
-                                          ),
-                                          width: 20.0,
-                                          height: 20.0,
-                                          child: _isSelected ? Icon(
-                                            Icons.check,
-                                            color: Colors.black,
-                                            size: 15.0,
-                                          ) : null,
-                                        )
-                                    ),
-                                    /*CustomCheckbox(
-                                        selectedColor: Color(0xFF005ef5),
-                                    ),*/
-                                      ),
-
-                                      SizedBox(
-                                        width:
-                                            5, // here put the desired space between the icon and the text
-                                      ),
-                                      Flexible(
-                                          child: Text(
-                                        allTask
-                                            ? todos[i]
-                                            : completedTask
-                                                ? selectedTodo[i]
-                                                : unselectedTodos[i],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                      )) // here we could use a column widget if we want to add a subtitle
-                                    ],
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  IconSlideAction(
-                                    icon: Icons.close,
-                                    caption: 'Delete',
-                                    color: Theme.of(context).accentColor,
-                                    onTap: () {
-                                      setState(() {
-                                        todos.removeAt(i);
-                                      });
-                                    },
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 14.0, right: 14.0),
-                  child: Container(
-                    height: 50.0,
-                    child: TextField(
-                      controller: fieldText,
-                      cursorColor: Colors.grey[700],
-                      onChanged: (String value) {
-                        input = value;
-                      },
-                      decoration: InputDecoration(
-                        isDense: true,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.all(Radius.circular(22.0)),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(22.0))),
-                        suffixIcon: IconButton(
-                            icon: Icon(Icons.add,
-                                size: 30.0, color: Colors.grey[700]),
-                            onPressed: () {
-                              setState(() {
-                                todos.add(input);
-                                FocusScope.of(context).unfocus();
-                                clearText();
-                                input = '';
-                              });
-                            }),
-                        filled: true,
-                        fillColor:
-                            Theme.of(context).inputDecorationTheme.fillColor,
-                      ),
-                      onSubmitted: (newValue) {
-                        setState(() {
-                          todos.add(input);
-                          unselectedTodos.add(input);
-                          FocusScope.of(context).unfocus();
-                          clearText();
-                          input = '';
-                        });
-                      },
-                    ),
-                  ),
-                )
-              ],
+      appBar: TLAppBar(
+        headerColor: TLColors.blue,
+        headerText: 'Work',
+        actions: [
+          InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Icon(Icons.sort),
             ),
           ),
+        ],
+      ),
+
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: ListView.separated(
+                  itemBuilder: (_context, _index) {
+                    var item = workArray[_index];
+                    return Container(
+                      child: TLSlider(
+                        removeItem: () {
+                          setState(() {
+                            workArray.removeAt(_index);
+                          });
+                        },
+                        todoArray: workArray,
+                        valueKey: ValueKey(workArray[_index]),
+                        child: TodoListItem(
+                          selectedColor: TLColors.blue,
+                          isSelected: selectedItems.contains(item),
+                          itemTitle: item,
+                          onPressed: () {
+                            setState(() {
+                              if (selectedItems.contains(item))
+                                selectedItems.remove(item);
+                              else
+                                selectedItems.add(item);
+                            });
+                          },
+                        ),
+                    ));
+                  },
+                  separatorBuilder: (_context, _index) => SizedBox(
+                        height: 15,
+                      ),
+                  itemCount: workArray.length),
+            ),
+            TLInputField(
+              todoEntryController: todoEntryController,
+              addTodo: () {
+                addTodo();
+              },
+              addTodos: (newValue) {
+                addTodo();
+              },
+            ),
+            SizedBox(
+              height: 40,
+            )
+          ],
         ),
       ),
     );
+  }
+
+  addTodo() {
+    var input = todoEntryController.value.text;
+    if (input.isEmpty) return;
+
+    print('hi');
+
+    setState(() {
+      workArray.add(input);
+      todoEntryController.text = "";
+    });
+
+    FocusScope.of(context).unfocus();
   }
 }

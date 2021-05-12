@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:what_to_do/myAppBar.dart';
 import 'package:what_to_do/utility/colors.dart';
 import 'package:what_to_do/views/app_bar.dart';
 
@@ -54,7 +53,7 @@ class _AllTaskState extends State<AllTask> {
                                     color: Theme.of(context).accentColor,
                                     border: Border(
                                         left: BorderSide(
-                                            color: Color(0XFFf6bc38),
+                                            color: TLColors.yellow,
                                             width: 5))),
                               ),
                               clipper: ShapeBorderClipper(

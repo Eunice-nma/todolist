@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:what_to_do/views/app_bar.dart';
 
 class Trash extends StatefulWidget {
   @override
@@ -9,10 +10,10 @@ class _TrashState extends State<Trash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Trash'),
-        centerTitle: true,
-      ),
+      appBar: TLAppBar(
+        headerColor: Colors.black,
+        headerText: "Trash",
+      )
     );
   }
 }
